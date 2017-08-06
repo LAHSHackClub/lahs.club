@@ -1,0 +1,19 @@
+.user-view img {
+	height: 2em;
+	border-radius: 3px;
+	margin-bottom: -0.6em;
+}
+
+body {
+	padding-left: 300px;
+}
+
+#continue-delete {
+	display: none;
+}
+
+@media screen and (max-width: 992px) {
+	body {
+		padding-left: 0;
+	}
+}
