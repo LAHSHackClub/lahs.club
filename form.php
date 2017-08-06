@@ -27,7 +27,7 @@ if (isset($_POST['first_name'])) {
 		$mail->send();
 
 		exec('yes "" | adduser ' . $linux_username . ' --disabled-login');
-		exec('yes "' . $password . '" passwd ' . $linux_username);
+		exec('yes "' . $password . '" | passwd ' . $linux_username);
 		exec('chage -d 0 ' . $linux_username);
 
 			echo "success";
