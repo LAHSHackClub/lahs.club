@@ -20,7 +20,7 @@ if (isset($_SESSION['logged_in']) && isset($_POST['subject'])) {
 	$mail->isHTML(true);
 
 	$mail->Subject = $subject;
-	$mail->Body = "<head><link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'></head><body style='font-family: \"Roboto\";'><div style='width: 90%; height: 100%; padding: 5% 5%;'><div style='width: calc(100% - 20px); padding: 10px; background-color: #1565c0; color: white; text-align: center; font-size: 2em; margin: 0'>$subject</div><div style='background-color: #efefef; padding: 10px;'>$message</div></div></body>";
+	$mail->Body = "<head><link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'></head><body style='font-family: \"Roboto\", sans-serif;'><div style='width: 90%; height: 100%; padding: 5% 5%;'><div style='width: calc(100% - 20px); padding: 10px; background-color: #1565c0; color: white; text-align: center; font-size: 2em; margin: 0'>$subject</div><div style='background-color: #efefef; padding: 10px;'>$message</div></div></body>";
 
 	$mail->send();
 
