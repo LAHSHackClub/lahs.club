@@ -17,6 +17,12 @@ $("#submit-button").click(function() {
 			} else if (e == "invalid_email") {
 				$('#form-action-header').html("Error");
 				$('#form-action-content').html("That email is not a valid school email. Please do not use your personal email, instead use your school-issued email. If you do not have one, please contact us at <a href='mailto:hack@lahs.club'>hack@lahs.club</a>.");
+			} else if (e == "first_name_too_long") {
+				$('#form-action-header').html("Error");
+				$('#form-action-content').html("Your first name is too long!");
+			} else if (e == "last_name_too_long") {
+				$('#form-action-header').html("Error");
+				$('#form-action-content').html("Your last name is too long!");
 			} else {
 				$('#form-action-header').html("Error");
 				$('#form-action-content').html("An unknown error occurred, please contact our system administrators at <a href='mailto:hack@lahs.club'>hack@lahs.club</a> immediately!");

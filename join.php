@@ -29,11 +29,11 @@
     <div class="container">
 	    <div class="row">
 	    	<div class="input-field col s12 m6 l6">
-		      <input id="first_name" type="text" class="validate">
+		      <input id="first_name" type="text" class="validate" maxlength="255">
 		      <label for="first_name">First Name</label>
 		    </div>
 		    <div class="input-field col s6 l6">
-		      <input id="last_name" type="text" class="validate">
+		      <input id="last_name" type="text" class="validate" maxlength="255">
 		      <label for="last_name">Last Name</label>
 		    </div>
 	    </div>

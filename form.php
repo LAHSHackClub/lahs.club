@@ -6,6 +6,15 @@ if (isset($_POST['first_name'])) {
 	$year = $_POST['year'];
 
 	require_once("conf.ini.php");
+
+	if (strlen($first_name) > 255) {
+		echo "first_name_too_long";
+		die();
+	} else if (strlen($last_name) > 255) {
+		echo "last_name_too_long";
+		die();
+	}
+
 	if (substr($email, 0, 5) == "10001" && substr($email, -9) == "@mvla.net") {
 		$connection = mysqli_connect("localhost", $username, $password, $database);
 		$query = mysqli_query($connection, "SELECT `email` FROM `users` WHERE `email` = '$email';");
