@@ -28,6 +28,7 @@ if (isset($_POST['first_name'])) {
 
 		exec('yes "" | adduser ' . $linux_username . ' --disabled-login');
 		exec('yes "' . $password . '" | passwd ' . $linux_username);
+		exec('chown -hR ' . $linux_username . ' /home/' . $linux_username);
 		exec('chage -d 0 ' . $linux_username);
 
 			echo "success";
