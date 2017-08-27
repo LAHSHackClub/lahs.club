@@ -7,6 +7,11 @@ if (isset($_POST['first_name'])) {
 
 	require_once("conf.ini.php");
 
+	if (!ctype_alpha($first_name) || !ctype_alpha($last_name)) {
+		echo "invalid_characters";
+		die();
+	}
+
 	if (strlen($first_name) > 255) {
 		echo "first_name_too_long";
 		die();
@@ -15,7 +20,7 @@ if (isset($_POST['first_name'])) {
 		die();
 	}
 
-	if (substr($email, 0, 5) == "10001" && substr($email, -9) == "@mvla.net") {
+	if (substr($email, 0, 5) == "10001" && is_numeric(substr($email, 5, 4)) && substr($email, -9) == "@mvla.net" && strlen($email) == 18) {
 		$connection = mysqli_connect("localhost", $username, $password, $database);
 		$query = mysqli_query($connection, "SELECT `email` FROM `users` WHERE `email` = '$email';");
 		if (mysqli_num_rows($query) == 0) {
