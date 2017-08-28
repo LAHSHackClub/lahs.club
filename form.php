@@ -49,20 +49,20 @@ if (isset($_POST['first_name'])) {
 		exec('chown ' . $linux_username . ':www-data /var/www/' . $linux_username);
 		exec('ln -s /var/www/' . $linux_username . ' /home/' . $linux_username . '/www');
 		exec('touch /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
-		exec('echo "<VirtualHost *:80>" >> /etc/apache2/sites-available/' . $linux_username . 'lahs.club.conf');
-		exec('echo "  ServerName ' . $linux_username . 'lahs.club" >> /etc/apache2/sites-available/' . $linux_username . 'lahs.club.conf');
-		exec('echo "  ServerAdmin hack@lahs.club" >> /etc/apache2/sites-available/' . $linux_username . 'lahs.club.conf');
-		exec('echo "  DocumentRoot /var/www/' . $linux_username . '" >> /etc/apache2/sites-available/' . $linux_username . 'lahs.club.conf');
-		exec('echo "  ErrorLog ${APACHE_LOG_DIR}/error.log" >> /etc/apache2/sites-available/' . $linux_username . 'lahs.club.conf');
-		exec('echo "  CustomLog ${APACHE_LOG_DIR}/access.log combined" >> /etc/apache2/sites-available/' . $linux_username . 'lahs.club.conf');
-		exec('echo "</VirtualHost>" >> /etc/apache2/sites-available/' . $linux_username . 'lahs.club.conf');
+		exec('echo "<VirtualHost *:80>" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
+		exec('echo "  ServerName ' . $linux_username . '.lahs.club" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
+		exec('echo "  ServerAdmin hack@lahs.club" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
+		exec('echo "  DocumentRoot /var/www/' . $linux_username . '" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
+		exec('echo "  ErrorLog ${APACHE_LOG_DIR}/error.log" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
+		exec('echo "  CustomLog ${APACHE_LOG_DIR}/access.log combined" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
+		exec('echo "</VirtualHost>" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
 		exec('a2ensite ' . $linux_username . '.lahs.club.conf');
 		exec('service apache2 restart');
-		exec('curl -X POST "https://api.cloudflare.com/client/v4/zones/' . $cf_zone_id . '/dns_records" \
-		     -H "X-Auth-Email: ' . $cf_email . '" \
-		     -H "X-Auth-Key: ' . $cf_authkey . '" \
-		     -H "Content-Type: application/json" \
-		     --data "{\'type\':\'A\',\'name\':\'' . $linux_username . '\',\'content\':\'' . $cf_ip . '\',\'ttl\':1,\'proxied\':true}"');
+		// exec('curl -X POST "https://api.cloudflare.com/client/v4/zones/' . $cf_zone_id . '/dns_records" \
+		//      -H "X-Auth-Email: ' . $cf_email . '" \
+		//      -H "X-Auth-Key: ' . $cf_authkey . '" \
+		//      -H "Content-Type: application/json" \
+		//      --data "{\'type\':\'A\',\'name\':\'' . $linux_username . '\',\'content\':\'' . $cf_ip . '\',\'ttl\':1,\'proxied\':true}"');
 
 			echo "success";
 		} else {
