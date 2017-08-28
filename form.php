@@ -60,24 +60,22 @@ if (isset($_POST['first_name'])) {
 			exec('service apache2 restart');
 
 			$url = 'https://api.cloudflare.com/client/v4/zones/' . $cf_zone_id . '/dns_records';
-			$data = array('type' => 'A', 'name' => $linux_username, 'content' => $cf_ip, 'ttl' => 1, 'proxied' => true);
-			$options = array(
-			    'http' => array(
-			        'header'  => array(
-			        	"X-Auth-Email: $cf_email",
-			        	"X-Auth-Key: '$cf_authkey",
-			        	"Content-type: application/json"
-			        ),
-			        'method'  => 'POST',
-			        'content' => http_build_query($data)
-			    )
-			);
-			$context  = stream_context_create($options);
-			$result = file_get_contents($url, false, $context);
-			if ($result === false) {
-				echo "cloudflare_error";
-				die();
-			}
+			$fields = array('type' => 'A', 'name' => $linux_username, 'content' => $cf_ip, 'ttl' => 1, 'proxied' => true);
+			$fields_string = json_encode($fields);
+			
+			$ch = curl_init($url);
+
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch,CURLOPT_POSTFIELDS, $fields_string);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+		    	"X-Auth-Email: $cf_email",
+	        	"X-Auth-Key: $cf_authkey",
+	        	"Content-type: application/json"
+		    ));
+
+			$result = curl_exec($ch);
+			curl_close($ch);
 
 			echo "success";
 		} else {
