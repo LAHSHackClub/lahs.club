@@ -26,6 +26,9 @@ $("#submit-button").click(function() {
 			} else if (e == "invalid_characters") {
 				$('#form-action-header').html("Error");
 				$('#form-action-content').html("Invalid characters! Your name can only contain letters from the alphabet.");
+			} else if (e == "cloudflare_error") {
+				$('#form-action-header').html("Error");
+				$('#form-action-content').html("There was an error with CloudFlare! Please email hack@lahs.club immediately with a screenshot of this. Thank you!");
 			} else {
 				$('#form-action-header').html("Error");
 				$('#form-action-content').html("An unknown error occurred, please contact our system administrators at <a href='mailto:hack@lahs.club'>hack@lahs.club</a> immediately!");

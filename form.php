@@ -27,42 +27,57 @@ if (isset($_POST['first_name'])) {
 			mysqli_query($connection, "INSERT INTO `users` VALUES('$first_name', '$last_name', '$email', '$year');");
 			file_get_contents("https://slack.com/api/users.admin.invite?token=$token&email=$email");
 
-		$linux_username = strtolower($first_name . $last_name);
-		$password = generateRandomString(8);
+			$linux_username = strtolower($first_name . $last_name);
+			$password = generateRandomString(8);
 
-		$mail->setFrom('hack@lahs.club', 'LAHS Hack Club');
-		$mail->addAddress($email);
-		$mail->addBCC('hack@lahs.club');
-		$mail->isHTML(true);
+			$mail->setFrom('hack@lahs.club', 'LAHS Hack Club');
+			$mail->addAddress($email);
+			$mail->addBCC('hack@lahs.club');
+			$mail->isHTML(true);
 
-		$mail->Subject = 'Welcome to LAHS Hack Club!';
-		$mail->Body = "<head><link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'></head><body style='font-family: \"Roboto\", sans-serif;'><div style='width: 90%; height: 100%; padding: 5% 5%;'><div style='width: calc(100% - 20px); padding: 10px; background-color: #1565c0; color: white; text-align: center; font-size: 2em; margin: 0'>Welcome to LAHS Hack Club!</div><div style='background-color: #efefef; padding: 10px;'><p>Dear $first_name,</p><p>Welcome to the LAHS Hack Club! We're super excited to have you! Please keep in mind that we meet once per week on Thursdays at lunch in the APCS room (Room 723), so be sure to be there! If you're new to LAHS, room 723 is on the second floor above the science rooms -- check out your planner for a map! You can find our club's website for more information at <a href='https://lahs.club'>lahs.club</a>.</p><p>You have automatically been added to our server and mailing list, and an invite to our Slack has been sent to your email. If you've never used Slack before, it's basically a messaging service that we use to communicate!</p><p>Finally, we've added you to our dedicated server, solely for LAHS Hack Club members! Your username is <b>$linux_username</b> and your password is <b>$password</b>. You will be prompted to change your password when you log in via SSH on <b>server.lahs.club</b>, but if you have no idea what we're talking about, no worries! We'll go over it during our meetings. Keep this email for reference!</p><p>We can't wait to see you next Thursday!</p><p>Best Regards,</p><p>The LAHS Hack Club Team</p></div></div></body>";
+			$mail->Subject = 'Welcome to LAHS Hack Club!';
+			$mail->Body = "<head><link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'></head><body style='font-family: \"Roboto\", sans-serif;'><div style='width: 90%; height: 100%; padding: 5% 5%;'><div style='width: calc(100% - 20px); padding: 10px; background-color: #1565c0; color: white; text-align: center; font-size: 2em; margin: 0'>Welcome to LAHS Hack Club!</div><div style='background-color: #efefef; padding: 10px;'><p>Dear $first_name,</p><p>Welcome to the LAHS Hack Club! We're super excited to have you! Please keep in mind that we meet once per week on Thursdays at lunch in the APCS room (Room 723), so be sure to be there! If you're new to LAHS, room 723 is on the second floor above the science rooms -- check out your planner for a map! You can find our club's website for more information at <a href='https://lahs.club'>lahs.club</a>.</p><p>You have automatically been added to our server and mailing list, and an invite to our Slack has been sent to your email. If you've never used Slack before, it's basically a messaging service that we use to communicate!</p><p>Finally, we've added you to our dedicated server, solely for LAHS Hack Club members! Your username is <b>$linux_username</b> and your password is <b>$password</b>. You will be prompted to change your password when you log in via SSH on <b>server.lahs.club</b>, but if you have no idea what we're talking about, no worries! We'll go over it during our meetings. Keep this email for reference!</p><p>We can't wait to see you next Thursday!</p><p>Best Regards,</p><p>The LAHS Hack Club Team</p></div></div></body>";
 
-		$mail->send();
+			$mail->send();
 
-		exec('yes "" | adduser ' . $linux_username . ' --disabled-login');
-		exec('yes "' . $password . '" | passwd ' . $linux_username);
-		exec('chown -hR ' . $linux_username . ' /home/' . $linux_username);
-		exec('chage -d 0 ' . $linux_username);
-		exec('chmod 700 /home/' . $linux_username);
-		exec('mkdir /var/www/' . $linux_username);
-		exec('chown ' . $linux_username . ':www-data /var/www/' . $linux_username);
-		exec('ln -s /var/www/' . $linux_username . ' /home/' . $linux_username . '/www');
-		exec('touch /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
-		exec('echo "<VirtualHost *:80>" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
-		exec('echo "  ServerName ' . $linux_username . '.lahs.club" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
-		exec('echo "  ServerAdmin hack@lahs.club" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
-		exec('echo "  DocumentRoot /var/www/' . $linux_username . '" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
-		exec('echo "  ErrorLog ${APACHE_LOG_DIR}/error.log" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
-		exec('echo "  CustomLog ${APACHE_LOG_DIR}/access.log combined" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
-		exec('echo "</VirtualHost>" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
-		exec('a2ensite ' . $linux_username . '.lahs.club.conf');
-		exec('service apache2 restart');
-		// exec('curl -X POST "https://api.cloudflare.com/client/v4/zones/' . $cf_zone_id . '/dns_records" \
-		//      -H "X-Auth-Email: ' . $cf_email . '" \
-		//      -H "X-Auth-Key: ' . $cf_authkey . '" \
-		//      -H "Content-Type: application/json" \
-		//      --data "{\'type\':\'A\',\'name\':\'' . $linux_username . '\',\'content\':\'' . $cf_ip . '\',\'ttl\':1,\'proxied\':true}"');
+			exec('yes "" | adduser ' . $linux_username . ' --disabled-login');
+			exec('yes "' . $password . '" | passwd ' . $linux_username);
+			exec('chown -hR ' . $linux_username . ' /home/' . $linux_username);
+			exec('chage -d 0 ' . $linux_username);
+			exec('chmod 700 /home/' . $linux_username);
+			exec('mkdir /var/www/' . $linux_username);
+			exec('chown ' . $linux_username . ':www-data /var/www/' . $linux_username);
+			exec('ln -s /var/www/' . $linux_username . ' /home/' . $linux_username . '/www');
+			exec('touch /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
+			exec('echo "<VirtualHost *:80>" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
+			exec('echo "  ServerName ' . $linux_username . '.lahs.club" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
+			exec('echo "  ServerAdmin hack@lahs.club" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
+			exec('echo "  DocumentRoot /var/www/' . $linux_username . '" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
+			exec('echo "  ErrorLog ${APACHE_LOG_DIR}/error.log" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
+			exec('echo "  CustomLog ${APACHE_LOG_DIR}/access.log combined" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
+			exec('echo "</VirtualHost>" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
+			exec('a2ensite ' . $linux_username . '.lahs.club.conf');
+			exec('service apache2 restart');
+
+			$url = 'https://api.cloudflare.com/client/v4/zones/' . $cf_zone_id . '/dns_records';
+			$data = array('type' => 'A', 'name' => $linux_username, 'content' => $cf_ip, 'ttl' => 1, 'proxied' => true);
+			$options = array(
+			    'http' => array(
+			        'header'  => array(
+			        	"X-Auth-Email: $cf_email",
+			        	"X-Auth-Key: '$cf_authkey",
+			        	"Content-type: application/json"
+			        ),
+			        'method'  => 'POST',
+			        'content' => http_build_query($data)
+			    )
+			);
+			$context  = stream_context_create($options);
+			$result = file_get_contents($url, false, $context);
+			if ($result === false) {
+				echo "cloudflare_error";
+				die();
+			}
 
 			echo "success";
 		} else {
