@@ -47,7 +47,7 @@ if (isset($_POST['first_name'])) {
 		exec('chmod 700 /home/' . $linux_username);
 		exec('mkdir /var/www/' . $linux_username);
 		exec('chown ' . $linux_username . ':www-data /var/www/' . $linux_username);
-		exec('ln -s /var/www/' . $linux_username . '/ /home/' . $linux_username . '/www');
+		exec('ln -s /var/www/' . $linux_username . ' /home/' . $linux_username . '/www');
 		exec('touch /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
 		exec('echo "<VirtualHost *:80>" >> /etc/apache2/sites-available/' . $linux_username . 'lahs.club.conf');
 		exec('echo "  ServerName ' . $linux_username . 'lahs.club" >> /etc/apache2/sites-available/' . $linux_username . 'lahs.club.conf');
