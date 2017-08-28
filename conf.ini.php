@@ -21,6 +21,7 @@ $announcements_channel = "";
 $cf_zone_id = '';
 $cf_email = '';
 $cf_authkey = '';
+$cf_ip = '';
 
 // Mail Settings
 require 'phpmailer/PHPMailerAutoload.php';
