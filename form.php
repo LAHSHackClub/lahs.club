@@ -56,6 +56,7 @@ if (isset($_POST['first_name'])) {
 			exec('echo "  ErrorLog ${APACHE_LOG_DIR}/error.log" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
 			exec('echo "  CustomLog ${APACHE_LOG_DIR}/access.log combined" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
 			exec('echo "</VirtualHost>" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
+			exec('cp /root/index.php /var/www/' . $linux_username);
 			exec('a2ensite ' . $linux_username . '.lahs.club.conf');
 			exec('service apache2 restart');
 
