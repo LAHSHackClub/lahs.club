@@ -64,7 +64,7 @@ if (isset($_POST['first_name'])) {
 			$url = 'https://api.cloudflare.com/client/v4/zones/' . $cf_zone_id . '/dns_records';
 			$fields = array('type' => 'A', 'name' => $linux_username, 'content' => $cf_ip, 'ttl' => 1, 'proxied' => true);
 			$fields_string = json_encode($fields);
-			
+
 			$ch = curl_init($url);
 
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
