@@ -1,4 +1,6 @@
 <?php
+ignore_user_abort(true);
+
 if (isset($_POST['first_name'])) {
 	$first_name = $_POST['first_name'];
 	$last_name = $_POST['last_name'];
@@ -58,8 +60,8 @@ if (isset($_POST['first_name'])) {
 			exec('echo "</VirtualHost>" >> /etc/apache2/sites-available/' . $linux_username . '.lahs.club.conf');
 			exec('cp /root/index.php /var/www/' . $linux_username . '/');
 			exec('chown ' . $linux_username . ':' . $linux_username . ' /var/www/' . $linux_username . '/index.php');
-			exec('a2ensite ' . $linux_username . '.lahs.club.conf');
-			exec('service apache2 restart');
+			exec('a2ensite ' . $linux_username . '.lahs.club');
+			exec('service apache2 reload');
 
 			$url = 'https://api.cloudflare.com/client/v4/zones/' . $cf_zone_id . '/dns_records';
 			$fields = array('type' => 'A', 'name' => $linux_username, 'content' => $cf_ip, 'ttl' => 1, 'proxied' => true);
