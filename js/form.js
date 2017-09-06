@@ -8,7 +8,7 @@ $("#submit-button").click(function() {
 		$('#form-action-content').html("");
 		$.post("form.php", {"first_name": $("#first_name").val(), "last_name": $("#last_name").val(), "email": $("#email").val(), "year": $("#year").val()}, function(e) {
 			if (e == "success") {
-				$("#form-action-dismiss").attr("href", ".");
+				$("#form-action-dismiss").attr("href", "join.php");
 				$('#form-action-header').html("Success!");
 				$('#form-action-content').html("You have successfully registered for the LAHS Hack Club mailing list, and an invite to our Slack has been emailed to your account. Please join our Slack, and enjoy your stay!");
 			} else if (e == "email_exists") {
