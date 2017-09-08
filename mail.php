@@ -33,6 +33,7 @@ if (isset($_SESSION['logged_in']) && isset($_POST['subject'])) {
 	$slack_message = str_replace("<em>", "_", $slack_message);
 	$slack_message = str_replace("</em>", "_", $slack_message);
 	$slack_message = str_replace("<br>", "\n", $slack_message);
+	$slack_message = str_replace("<br />", "\n", $slack_message);
 	$slack_message = preg_replace('/<[^>]*>/', "\n\n", $slack_message);
 
 	$url = 'https://slack.com/api/chat.postMessage';
