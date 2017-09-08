@@ -25,12 +25,14 @@ if (isset($_SESSION['logged_in']) && isset($_POST['subject'])) {
 	$mail->send();
 
 	$slack_message = str_replace("</p><p>", "\n\n", $message);
+	$slack_message = str_replace("</p>\n<p>", "\n\n", $message);
 	$slack_message = str_replace("<p>", "", $slack_message);
 	$slack_message = str_replace("</p>", "", $slack_message);
 	$slack_message = str_replace("<b>", "*", $slack_message);
 	$slack_message = str_replace("</b>", "*", $slack_message);
 	$slack_message = str_replace("<em>", "_", $slack_message);
 	$slack_message = str_replace("</em>", "_", $slack_message);
+	$slack_message = str_replace("<br>", "\n", $slack_message);
 	$slack_message = preg_replace('/<[^>]*>/', "\n\n", $slack_message);
 
 	$url = 'https://slack.com/api/chat.postMessage';
