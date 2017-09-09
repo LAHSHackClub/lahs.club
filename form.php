@@ -22,7 +22,7 @@ if (isset($_POST['first_name'])) {
 		die();
 	}
 
-	if (substr($email, 0, 5) == "10001" && is_numeric(substr($email, 5, 4)) && substr($email, -9) == "@mvla.net" && strlen($email) == 18) {
+	if (substr($email, 0, 4) == "1000" && is_numeric(substr($email, 4, 5)) && substr($email, -9) == "@mvla.net" && strlen($email) == 18) {
 		$connection = mysqli_connect("localhost", $username, $password, $database);
 		$query = mysqli_query($connection, "SELECT `email` FROM `users` WHERE `email` = '$email';");
 		if (mysqli_num_rows($query) == 0) {
