@@ -59,7 +59,7 @@ $("#custom_submit").click(function() {
 		$.post("custom.php", {"username": $("#custom_username").val(), "email": $("#custom_email").val()}, function (e) {
 			if (e == "success") {
 				$("#info-modal-header").html("Success!");
-				$("#info-modal-content").html("Successfully registered new subdomain. A copy the email was sent to <b>hack@lahs.club</b> for reference!");
+				$("#info-modal-content").html("Successfully registered new subdomain. A copy of the email was sent to <b>hack@lahs.club</b> for reference!");
 			} else if (e == "invalid_characters") {
 				$("#info-modal-header").html("Error");
 				$("#info-modal-content").html("The username contains invalid characters. Please try again.");
