@@ -7,7 +7,7 @@ if (!isset($_SESSION['logged_in'])) {
 }
 
 if (isset($_POST['uname'])) {
-	$uname = $_POST['uname'];
+	$uname = $_POST['username'];
 	$email = $_POST['email'];
 
 	require_once("conf.ini.php");
