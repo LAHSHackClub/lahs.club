@@ -101,7 +101,7 @@ $user = $_SESSION['logged_in'];
 				<input id="custom_email" type="email" class="validate">
 				<label for="custom_email" data-error="Invalid Email!" data-success="Valid Email">Email</label>
 		    </div>
-			<h6 class="center"><a class="btn waves-effect waves-light green" id="custom_submit">Submit</a></h6>
+			<h6 class="center"><a class="btn waves-effect waves-light col s12 blue darken-3" id="custom_submit">Submit</a></h6>
 	    </div>
     </div>
 	<?php
