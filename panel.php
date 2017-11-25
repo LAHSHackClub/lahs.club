@@ -44,6 +44,7 @@ $user = $_SESSION['logged_in'];
 		<li><div class="divider"></div></li>
 		<li><a class="waves-effect" href="panel.php?list">Mailing List</a></li>
 		<li><a class="waves-effect" href="panel.php?email">Send New Email</a></li>
+		<li><a class="waves-effect" href="panel.php?custom">Custom Domain</a></li>
 	</ul>
 
 	<div class="row" style="padding: 10px 25px">
@@ -87,6 +88,22 @@ $user = $_SESSION['logged_in'];
 				<a class="btn waves-effect waves-light col s12 blue darken-3" id="send-mail">Send</a>
 			</div>
         </div>
+        <?php
+	} else if (isset($_GET['custom'])) {
+	?>
+	<div class="container">
+	    <div class="row">
+	    	<div class="input-field col s12 m6 l6">
+		      <input id="custom_username" type="text" class="validate" maxlength="255">
+		      <label for="custom_username">Username</label>
+		    </div>
+		    <div class="input-field col s6 l6">
+				<input id="custom_email" type="email" class="validate">
+				<label for="custom_email" data-error="Invalid Email!" data-success="Valid Email">Email</label>
+		    </div>
+			<h6 class="center"><a class="btn waves-effect waves-light green" id="custom_submit">Submit</a></h6>
+	    </div>
+    </div>
 	<?php
 	} else {
 		echo "<h4 class='center'>Chose an option on the left to get started.</h4>";

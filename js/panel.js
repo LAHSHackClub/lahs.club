@@ -47,3 +47,29 @@ $("#send-mail").click(function() {
 		});
 	}
 });
+
+$("#custom_submit").click(function() {
+	$("#info-modal").modal('open');
+	if ($("#custom_username").val() == "" || $("#custom_email").val() == "") {
+		$("#info-modal-header").html("Error");
+		$("#info-modal-content").html("Please fill out all required fields!");
+	} else {
+		$("#info-modal-header").html("Loading...");
+		$("#info-modal-content").html("");
+		$.post("custom.php", {"username": $("#custom_username").val(), "email": $("#custom_email").val()}, function (e) {
+			if (e == "success") {
+				$("#info-modal-header").html("Success!");
+				$("#info-modal-content").html("Successfully registered new subdomain. A copy the email was sent to <b>hack@lahs.club</b> for reference!");
+			} else if (e == "invalid_characters") {
+				$("#info-modal-header").html("Error");
+				$("#info-modal-content").html("The username contains invalid characters. Please try again.");
+			} else if (e == "username_too_long") {
+				$("#info-modal-header").html("Error");
+				$("#info-modal-content").html("The username is too long!");
+			} else {
+				$("#info-modal-header").html("Error");
+				$("#info-modal-content").html("An unknown error occurred, please contact our system administrators at <a href='mailto:hack@lahs.club'>hack@lahs.club</a> immediately!");
+			}
+		});
+	}
+});
