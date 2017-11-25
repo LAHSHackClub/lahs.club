@@ -6,7 +6,7 @@ if (!isset($_SESSION['logged_in'])) {
 	header("Location: .");
 }
 
-if (isset($_POST['uname'])) {
+if (isset($_POST['username'])) {
 	$uname = $_POST['username'];
 	$email = $_POST['email'];
 
