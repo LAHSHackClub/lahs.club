@@ -10,7 +10,7 @@
 	      <ul>
 	        <li><a class="orange-text text-lighten-1" href="http://jmistri.com">Jamsheed Mistri</a></li>
 	        <li><a class="orange-text text-lighten-1" href="https://github.com/kylemarino22">Kyle Marino</a></li>
-	        <li><a class="orange-text text-lighten-1" href="https://kungminlin.lahs.club/">Leo Lin</a></li>
+	        <li><a class="orange-text text-lighten-1" href="https://www.linkedin.com/in/kung-min-lin-887b52168/">Leo Lin</a></li>
 	        <li><a class="orange-text text-lighten-1" href="https://www.linkedin.com/in/ozanisman/">Oz Anisman</a></li>
 	      </ul>
 	    </div>
