@@ -106,7 +106,7 @@ $user = $_SESSION['logged_in'];
     </div>
 	<?php
 	} else {
-		echo "<h4 class='center'>Chose an option on the left to get started.</h4>";
+		echo "<h4 class='center'>Choose an option on the left to get started.</h4>";
 	}
 	?>
 	</div>
