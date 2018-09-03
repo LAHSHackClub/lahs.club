@@ -68,8 +68,7 @@ $("#custom_submit").click(function() {
 				$("#info-modal-content").html("The username is too long!");
 			} else {
 				$("#info-modal-header").html("Error");
-				$("#info-modal-content").html("An unknown error occurred, please contact our system administrators at <a href='mailto:hack@lahs.club'>hack@lahs.club</a> immediately!");
-				alert(e);
+				$("#info-modal-content").html("An unknown error occurred, please contact our system administrators at <a href='mailto:hack@lahs.club'>hack@lahs.club</a> immediately! Error: " + e);
 			}
 		});
 	}
