@@ -11,7 +11,7 @@
 	        <li><a class="orange-text text-lighten-1" href="http://jmistri.com">Jamsheed Mistri</a></li>
 	        <li><a class="orange-text text-lighten-1" href="https://github.com/kylemarino22">Kyle Marino</a></li>
 	        <li><a class="orange-text text-lighten-1" href="https://kungminlin.lahs.club/">Leo Lin</a></li>
-	        <li><a class="orange-text text-lighten-1" href="#">Oz Anisman</a></li>
+	        <li><a class="orange-text text-lighten-1" href="https://www.linkedin.com/in/ozanisman/">Oz Anisman</a></li>
 	      </ul>
 	    </div>
 	    <div class="col l3 s12">
