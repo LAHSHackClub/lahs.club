@@ -69,6 +69,7 @@ $("#custom_submit").click(function() {
 			} else {
 				$("#info-modal-header").html("Error");
 				$("#info-modal-content").html("An unknown error occurred, please contact our system administrators at <a href='mailto:hack@lahs.club'>hack@lahs.club</a> immediately!");
+				alert(e);
 			}
 		});
 	}
