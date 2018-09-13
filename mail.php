@@ -9,20 +9,37 @@ if (isset($_SESSION['logged_in']) && isset($_POST['subject'])) {
 	$connection = mysqli_connect("127.0.0.1", $username, $password, $database);
 	$query = mysqli_query($connection, "SELECT * FROM `users`;");
 	
-	$mail->setFrom('hack@lahs.club', 'LAHS Hack Club');
-	$mail->addAddress('hack@lahs.club', 'LAHS Hack Club');
-	
+	$recipients = [];
+
 	while ($row = mysqli_fetch_array($query)) {
-		$mail->addBCC($row['email']);
+		$recipients[] = $row['email'];
 	}
 
-	$mail->addBCC('hack@lahs.club');
-	$mail->isHTML(true);
+	$emails = [];
 
-	$mail->Subject = $subject;
-	$mail->Body = "<head><link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'></head><body style='font-family: \"Roboto\", sans-serif;'><div style='width: 90%; height: 100%; padding: 5% 5%;'><div style='width: calc(100% - 20px); padding: 10px; background-color: #1565c0; color: white; text-align: center; font-size: 2em; margin: 0'>$subject</div><div style='background-color: #efefef; padding: 10px;'>$message</div></div></body>";
+	for ($i = 0; $i < sizeof($recipients); $i ++) {
+		$emails[(int) floor($i / 50)][] = $recipients[$i];
+	}
 
-	$mail->send();
+	foreach ($emails as $email) {
+		$mail->clearAllRecipients();
+		
+		$mail->setFrom('hack@lahs.club', 'LAHS Hack Club');
+		$mail->addAddress('hack@lahs.club', 'LAHS Hack Club');
+
+		foreach ($email as $user) {
+			$mail->addBCC($user);
+		}
+
+		$mail->isHTML(true);
+
+		$mail->Subject = $subject;
+		$mail->Body = "<head><link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'></head><body style='font-family: \"Roboto\", sans-serif;'><div style='width: 90%; height: 100%; padding: 5% 5%;'><div style='width: calc(100% - 20px); padding: 10px; background-color: #1565c0; color: white; text-align: center; font-size: 2em; margin: 0'>$subject</div><div style='background-color: #efefef; padding: 10px;'>$message</div></div></body>";
+
+		if (!$mail->send()) {
+			die('Mailer Error: '.$mail->ErrorInfo);
+		}
+	}
 
 	$slack_message = str_replace("</p><p>", "\n\n", $message);
 	$slack_message = str_replace("</p>\n<p>", "\n\n", $message);
