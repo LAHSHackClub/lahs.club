@@ -41,10 +41,10 @@
 	    	<div class="input-field col s12 m6 l6">
 				<select id="year">
 				  <option value="" disabled selected>Select One</option>
+				  <option value="2022">2022</option>
 				  <option value="2021">2021</option>
 				  <option value="2020">2020</option>
 				  <option value="2019">2019</option>
-				  <option value="2018">2018</option>
 				</select>
 				<label>Year of Graduation</label>
 		    </div>
