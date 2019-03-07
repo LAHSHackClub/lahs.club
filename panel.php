@@ -28,7 +28,16 @@ $user = $_SESSION['logged_in'];
 	</ul>
 
 	<ul id="nav-mobile" class="side-nav">
-		<li><a href="logout.php">Log Out</a></li>
+		<li>
+			<div class="user-view">
+				<a href="panel.php"><span class="name"><img src="img/lahshackclub.png" />&nbsp;&nbsp;&nbsp;&nbsp;Logged in as <?php echo $user; ?></span></a>
+			</div>
+		</li>
+		<br>
+		<li><div class="divider"></div></li>
+		<li><a class="waves-effect" href="panel.php?list">Mailing List</a></li>
+		<li><a class="waves-effect" href="panel.php?email">Send New Email</a></li>
+		<li><a class="waves-effect" href="panel.php?custom">Custom Domain</a></li>
 	</ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
