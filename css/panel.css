@@ -16,4 +16,8 @@ body {
 	body {
 		padding-left: 0;
 	}
+
+	.user-view a {
+		color: #039be5 !important;
+	}
 }
