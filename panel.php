@@ -30,7 +30,7 @@ $user = $_SESSION['logged_in'];
 	<ul id="nav-mobile" class="side-nav">
 		<li>
 			<div class="user-view">
-				<a href="panel.php"><span class="name"><img src="img/lahshackclub.png" />&nbsp;&nbsp;&nbsp;&nbsp;Logged in as <?php echo $user; ?></span></a>
+				<a href="panel.php"><span class="name"><img src="img/lahshackclub.png" />&nbsp;Logged in as <?php echo $user; ?></span></a>
 			</div>
 		</li>
 		<br>
