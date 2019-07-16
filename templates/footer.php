@@ -10,7 +10,7 @@
 	      <ul>
 	        <li><a class="orange-text text-lighten-1" href="https://www.linkedin.com/in/kungminlin/">Kung-Min Lin</a></li>
 	        <li><a class="orange-text text-lighten-1" href="#">Zain Merchant</a></li>
-	        <li><a class="orange-text text-lighten-1" href="#">Klaire Li</a></li>
+	        <li><a class="orange-text text-lighten-1" href="https://www.linkedin.com/in/klaire-li/">Klaire Li</a></li>
 	        <li><a class="orange-text text-lighten-1" href="#">Aman Shah</a></li>
 	      </ul>
 	    </div>
