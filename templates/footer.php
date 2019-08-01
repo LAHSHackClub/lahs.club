@@ -9,9 +9,9 @@
 	      <h5 class="white-text">Team Members</h5>
 	      <ul>
 	        <li><a class="orange-text text-lighten-1" href="https://www.linkedin.com/in/kungminlin/">Kung-Min Lin</a></li>
-	        <li><p class="orange-text text-lighten-1">Zain Merchant</p></li>
+	        <li><a class="orange-text text-lighten-1">Zain Merchant</a></li>
 	        <li><a class="orange-text text-lighten-1" href="https://www.linkedin.com/in/klaire-li/">Klaire Li</a></li>
-	        <li><p class="orange-text text-lighten-1">Aman Shah</p></li>
+	        <li><a class="orange-text text-lighten-1">Aman Shah</a></li>
 	      </ul>
 	    </div>
 	    <div class="col l3 s12">
